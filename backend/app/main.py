@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import text
 
 from app.core.database import engine, Base
 from app.models.project import Project
@@ -26,6 +27,15 @@ app.add_middleware(
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
+
+# Add columns that create_all does not add to existing tables
+with engine.begin() as connection:
+    connection.execute(
+        text(
+            "ALTER TABLE projects "
+            "ADD COLUMN IF NOT EXISTS status VARCHAR(50) NOT NULL DEFAULT 'QUEUED'"
+        )
+    )
 
 
 # Register API routers
