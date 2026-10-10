@@ -69,10 +69,10 @@ def create_deployment(
         db.commit()
         db.refresh(new_deployment)
 
-        # Save the ID before the request's DB session closes.
+       
         deployment_id = new_deployment.id
 
-        # Process the deployment after sending the response.
+        
         background_tasks.add_task(
             process_deployment,
             deployment_id,

@@ -9,3 +9,10 @@ export async function createProject(project) {
   const { data } = await api.post("/api/projects/", project);
   return data;
 }
+export async function inspectProjectRepository(projectId) {
+  const response = await api.get(
+    `/projects/${projectId}/inspect-repository/`
+  );
+
+  return response.data;
+} 

@@ -5,3 +5,4 @@ psycopg
 python-dotenv
 pydantic-settings
 alembic
+https
