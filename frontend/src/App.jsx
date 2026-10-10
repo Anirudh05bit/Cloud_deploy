@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import Deployments from "./pages/Deployments";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import Projects from "./pages/Projects";
 import Dashboard from "./pages/Dashboard";
 import ProjectDetails from "./pages/ProjectDetails";
-
+import DeploymentDetails from "./pages/DeploymentDetails";
+import Logs from "./pages/Logs";
 
 function AppLayout() {
   return (
@@ -32,7 +33,12 @@ function AppLayout() {
   path="/projects/:projectId"
   element={<ProjectDetails />}
 />
-
+<Route path="/deployments" element={<Deployments />} />
+<Route path="/logs" element={<Logs />} />
+<Route
+  path="/deployments/:deploymentId"
+  element={<DeploymentDetails />}
+/>
 </Routes>
 
       </main>

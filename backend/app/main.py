@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
-
+from app.api.deployments import router as deployments_router
 from app.core.database import engine, Base
 from app.models.project import Project
 from app.models.deployment import Deployment
 from app.api.projects import router as projects_router
+from app.models.deployment_log import DeploymentLog
 
 
 app = FastAPI(
@@ -14,8 +15,6 @@ app = FastAPI(
     version="1.0.0",
 )
 
-
-# CORS configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -24,11 +23,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-# Create database tables
 Base.metadata.create_all(bind=engine)
 
-# Add columns that create_all does not add to existing tables
 with engine.begin() as connection:
     connection.execute(
         text(
@@ -40,7 +36,7 @@ with engine.begin() as connection:
 
 # Register API routers
 app.include_router(projects_router)
-
+app.include_router(deployments_router)
 
 @app.get("/")
 def root():
