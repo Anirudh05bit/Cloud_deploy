@@ -1,8 +1,9 @@
+
 fastapi
 uvicorn
 sqlalchemy
-psycopg
+psycopg[binary]
 python-dotenv
 pydantic-settings
 alembic
-https
+httpx
