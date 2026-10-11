@@ -32,6 +32,11 @@ jobs:
 
       - name: Check Python syntax
         run: python -m compileall -q backend/app
+    
+      - name: Run backend tests
+        working-directory: backend
+        run: python -m pytest tests -v
+
 
   frontend-check:
     name: Frontend checks
