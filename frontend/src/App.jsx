@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import ProjectDetails from "./pages/ProjectDetails";
 import DeploymentDetails from "./pages/DeploymentDetails";
 import Logs from "./pages/Logs";
+import Environments from "./pages/Environments";
 
 function AppLayout() {
   return (
@@ -35,6 +36,7 @@ function AppLayout() {
 />
 <Route path="/deployments" element={<Deployments />} />
 <Route path="/logs" element={<Logs />} />
+<Route path="/environments" element={<Environments />} />
 <Route
   path="/deployments/:deploymentId"
   element={<DeploymentDetails />}

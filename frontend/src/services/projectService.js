@@ -11,8 +11,20 @@ export async function createProject(project) {
 }
 export async function inspectProjectRepository(projectId) {
   const response = await api.get(
-    `/projects/${projectId}/inspect-repository/`
+    `/api/projects/${projectId}/inspect-repository/`
   );
 
   return response.data;
-} 
+}
+
+export async function getProject(projectId) {
+  const response = await api.get(`/api/projects/${projectId}`);
+  return response.data;
+}
+
+export async function getProjectDeployments(projectId) {
+  const response = await api.get(
+    `/api/projects/${projectId}/deployments/`
+  );
+  return response.data;
+}
